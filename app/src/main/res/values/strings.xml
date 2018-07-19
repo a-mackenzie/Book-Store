@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Book Store</string>
-    <string name="mainTextView">Number of books in store: </string>
+    <string name="mainTextView">"Number of books in store: "</string>
     <string name="dummyBookButton">Add Dummy Book</string>
 </resources>

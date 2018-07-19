@@ -5,12 +5,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android.bookstore.data.BookContract.BookEntry;
 import com.example.android.bookstore.data.BookDbHelper;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,10 +33,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 insertData();
                 displayDbInfo();
+                queryData();
             }
         });
 
         displayDbInfo();
+        queryData();
+
     }
 
     private void displayDbInfo() {
@@ -72,14 +78,13 @@ public class MainActivity extends AppCompatActivity {
                 String currentSupplier = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_NAME));
                 String currentSupplierTel = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_TEL));
 
-                mainTextView.append(
-                        +currentID + " - "
-                                + currentProduct + " - "
-                                + "£" + currentPrice + " - "
-                                + currentQty + " - "
-                                + currentSupplier + " - "
-                                + currentSupplierTel
-                                + "\n"
+                mainTextView.append("\n"
+                        + currentID + " - "
+                        + currentProduct + " - "
+                        + "£" + currentPrice + " - "
+                        + currentQty + " - "
+                        + currentSupplier + " - "
+                        + currentSupplierTel
                 );
             }
 
@@ -106,5 +111,31 @@ public class MainActivity extends AppCompatActivity {
         // Add the new book to the database
         db.insert(BookEntry.TABLE_NAME, null, values);
 
+    }
+
+    private void queryData() {
+
+        // Access a readable version of the database
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        // Query the database to display only ID, Product Name, and Quantity
+        String[] columns = {BookEntry._ID, BookEntry.PRODUCT_NAME, BookEntry.QTY};
+        String[] args = {"3"};
+        Cursor cursor = db.query(
+                BookEntry.TABLE_NAME,
+                columns,
+                BookEntry._ID + "=?",
+                args,
+                null,
+                null,
+                null,
+                null);
+
+        int columnCount = cursor.getColumnCount();
+        int rowCount = cursor.getCount();
+
+        TextView queryTextView = findViewById(R.id.text_view_query);
+
+        queryTextView.setText("Query Response: No. Columns: " + columnCount + ", No. Rows: " + rowCount);
     }
 }
