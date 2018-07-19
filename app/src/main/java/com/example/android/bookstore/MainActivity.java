@@ -137,5 +137,7 @@ public class MainActivity extends AppCompatActivity {
         TextView queryTextView = findViewById(R.id.text_view_query);
 
         queryTextView.setText("Query Response: No. Columns: " + columnCount + ", No. Rows: " + rowCount);
+
+        cursor.close();
     }
 }
