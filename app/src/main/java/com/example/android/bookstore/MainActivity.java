@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
             mainTextView.setText(getString(R.string.mainTextView) + cursor.getCount());
             mainTextView.append("\n\n"
                     + BookEntry._ID + " - "
-                    + BookEntry.PRODUCT_NAME + " - "
+                    + BookEntry.PRODUCT_TITLE + " - "
+                    + BookEntry.PRODUCT_AUTHOR + " - "
                     + BookEntry.PRICE + " - "
                     + BookEntry.QTY + " - "
                     + BookEntry.SUPPLIER_NAME + " - "
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
             while (cursor.moveToNext()) {
                 int currentID = cursor.getInt(cursor.getColumnIndex(BookEntry._ID));
-                String currentProduct = cursor.getString(cursor.getColumnIndex(BookEntry.PRODUCT_NAME));
+                String currentProduct = cursor.getString(cursor.getColumnIndex(BookEntry.PRODUCT_TITLE));
                 int currentPrice = cursor.getInt(cursor.getColumnIndex(BookEntry.PRICE)) / 100;
                 int currentQty = cursor.getInt(cursor.getColumnIndex(BookEntry.QTY));
                 String currentSupplier = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_NAME));
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Create the content values for the new book
         ContentValues values = new ContentValues();
-        values.put(BookEntry.PRODUCT_NAME, "A Universe From Nothing");
+        values.put(BookEntry.PRODUCT_TITLE, "A Universe From Nothing");
         values.put(BookEntry.PRICE, 1099);
         values.put(BookEntry.QTY, 1);
         values.put(BookEntry.SUPPLIER_NAME, "Books R Us");
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         // Query the database to display only ID, Product Name, and Quantity
-        String[] columns = {BookEntry._ID, BookEntry.PRODUCT_NAME, BookEntry.QTY};
+        String[] columns = {BookEntry._ID, BookEntry.PRODUCT_TITLE, BookEntry.QTY};
         String[] args = {"3"};
         Cursor cursor = db.query(
                 BookEntry.TABLE_NAME,
