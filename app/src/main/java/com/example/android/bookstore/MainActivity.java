@@ -72,10 +72,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         } finally {
-            cursor.close();
-
+            return;
         }
-
     }
 
     private void insertData() {
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         // Create the content values for the new book
         ContentValues values = new ContentValues();
         values.put(BookEntry.PRODUCT_TITLE, "A Universe From Nothing");
+        values.put(BookEntry.PRODUCT_AUTHOR, "Lawrence Krauss");
         values.put(BookEntry.PRICE, 1099);
         values.put(BookEntry.QTY, 1);
         values.put(BookEntry.SUPPLIER_NAME, "Books R Us");

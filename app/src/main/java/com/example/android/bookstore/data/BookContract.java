@@ -8,7 +8,7 @@ public class BookContract {
 
     public static final String CONTENT_AUTHORITY = "com.example.android.bookstore";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
-    public static final String PATH_BOOKS = "books";
+    public static final String PATH_BOOKS = "bookstore";
 
     public static final class BookEntry implements BaseColumns {
 
