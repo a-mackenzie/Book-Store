@@ -38,7 +38,7 @@ public class BookCursorAdapter extends CursorAdapter {
         titleView.setText(titleString);
         authorView.setText(authorString);
         priceView.setText("£" + (priceInt/100));
-        qtyView.setText(qtyInt);
+        qtyView.setText(String.valueOf(qtyInt));
 
     }
 }
