@@ -1,19 +1,28 @@
 package com.example.android.bookstore;
 
+import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.example.android.bookstore.data.BookContract.BookEntry;
 import com.example.android.bookstore.data.BookDbHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    private final static int BOOK_LOADER = 0;
 
     // Create a new BookDbHelper
     private BookDbHelper mDbHelper;
+
+    // Create a new CursorAdapter
+    BookCursorAdapter mCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,58 +31,22 @@ public class MainActivity extends AppCompatActivity {
         mDbHelper = new BookDbHelper(this);
 
         // Set onClickListener for add dummy book button
-        Button dummyBookButton = findViewById(R.id.dummyBookButton);
+        Button dummyBookButton = findViewById(R.id.fab);
         dummyBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 insertData();
-                displayDbInfo();
             }
         });
-        displayDbInfo();
-    }
 
-    private void displayDbInfo() {
+        mCursorAdapter = new BookCursorAdapter(this, null);
 
-        // Get a cursor that returns all rows in the books table
-        Cursor cursor = getContentResolver().query(BookEntry.CONTENT_URI, null, null, null, null);
+        final ListView bookListView = (ListView) findViewById(R.id.list_view);
 
-        TextView mainTextView = findViewById(R.id.text_view_main);
+        // Set the cursor adapter on the list view
+        bookListView.setAdapter(mCursorAdapter);
 
-        try {
-            mainTextView.setText(getString(R.string.mainTextView) + cursor.getCount());
-            mainTextView.append("\n\n"
-                    + BookEntry._ID + " - "
-                    + BookEntry.PRODUCT_TITLE + " - "
-                    + BookEntry.PRODUCT_AUTHOR + " - "
-                    + BookEntry.PRICE + " - "
-                    + BookEntry.QTY + " - "
-                    + BookEntry.SUPPLIER_NAME + " - "
-                    + BookEntry.SUPPLIER_TEL + "\n");
-
-            while (cursor.moveToNext()) {
-                int currentID = cursor.getInt(cursor.getColumnIndex(BookEntry._ID));
-                String currentTitle = cursor.getString(cursor.getColumnIndex(BookEntry.PRODUCT_TITLE));
-                String currentAuthor = cursor.getString(cursor.getColumnIndex(BookEntry.PRODUCT_AUTHOR));
-                int currentPrice = cursor.getInt(cursor.getColumnIndex(BookEntry.PRICE)) / 100;
-                int currentQty = cursor.getInt(cursor.getColumnIndex(BookEntry.QTY));
-                String currentSupplier = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_NAME));
-                String currentSupplierTel = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_TEL));
-
-                mainTextView.append("\n"
-                        + currentID + " - "
-                        + currentTitle + " - "
-                        + currentAuthor + " - "
-                        + "£" + currentPrice + " - "
-                        + currentQty + " - "
-                        + currentSupplier + " - "
-                        + currentSupplierTel
-                );
-            }
-
-        } finally {
-            return;
-        }
+        getLoaderManager().initLoader(BOOK_LOADER, null, this);
     }
 
     private void insertData() {
@@ -92,4 +65,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        String[] projection = {
+                BookEntry._ID,
+                BookEntry.PRODUCT_TITLE,
+                BookEntry.PRODUCT_AUTHOR,
+                BookEntry.PRICE,
+                BookEntry.QTY};
+        return new CursorLoader(this, BookEntry.CONTENT_URI, projection, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        mCursorAdapter.changeCursor(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mCursorAdapter.changeCursor(null);
+    }
 }
