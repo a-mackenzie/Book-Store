@@ -2,4 +2,7 @@
     <string name="app_name">Book Store</string>
     <string name="mainTextView">"Number of books in store: "</string>
     <string name="dummyBookButton">Add Dummy Book</string>
+
+    <string name="price_label">Price</string>
+    <string name="qty_label">Qty</string>
 </resources>
