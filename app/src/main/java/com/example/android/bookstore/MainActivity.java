@@ -3,11 +3,13 @@ package com.example.android.bookstore;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,6 +47,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Set the cursor adapter on the list view
         bookListView.setAdapter(mCursorAdapter);
+
+        // Set an onClickListener for the list view to open editor activity
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent editIntent = new Intent(MainActivity.this, EditorActivity.class);
+                startActivity(editIntent);
+            }
+        });
 
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
     }
