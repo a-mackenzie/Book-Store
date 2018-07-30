@@ -72,6 +72,7 @@
             android:text="@string/qty_label"/>
 
         <Button
+            android:id="@+id/qty_minus_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus"/>
@@ -83,6 +84,7 @@
             android:text="0"/>
 
         <Button
+            android:id="@+id/qty_plus_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus"/>
