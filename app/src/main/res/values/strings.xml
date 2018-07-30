@@ -5,6 +5,9 @@
 
     <string name="insert_dummy_book">Insert Dummy Book</string>
 
+    <string name="menu_save">Save</string>
+    <string name="menu_delete">Delete Book</string>
+
     <string name="price_label">Price</string>
     <string name="qty_label">Qty</string>
 
