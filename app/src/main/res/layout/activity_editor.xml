@@ -50,7 +50,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/price_label"/>
+            android:text="@string/price_label_symbol"/>
 
         <EditText
             android:id="@+id/price_edit_text"

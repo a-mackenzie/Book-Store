@@ -1,20 +1,18 @@
 <resources>
     <string name="app_name">Book Store</string>
-    <string name="mainTextView">"Number of books in store: "</string>
-    <string name="dummyBookButton">Add Dummy Book</string>
 
     <string name="insert_dummy_book">Insert Dummy Book</string>
-
     <string name="menu_save">Save</string>
     <string name="menu_delete">Delete Book</string>
 
+    <string name="price_label_symbol">Price £:</string>
     <string name="price_label">Price</string>
     <string name="qty_label">Qty</string>
-
     <string name="title_label">Title</string>
     <string name="author_label">Author</string>
     <string name="supplier_label">Supplier</string>
     <string name="supplier_tel_label">Supplier Tel.</string>
+
     <string name="minus">-</string>
     <string name="plus">+</string>
 

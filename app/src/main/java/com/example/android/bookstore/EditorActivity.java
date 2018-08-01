@@ -7,7 +7,11 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.NumberKeyListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -122,7 +126,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             String titleString = cursor.getString(cursor.getColumnIndex(BookEntry.PRODUCT_TITLE));
             String authorString = cursor.getString(cursor.getColumnIndex(BookEntry.PRODUCT_AUTHOR));
             int priceInt = cursor.getInt(cursor.getColumnIndex(BookEntry.PRICE));
-            String priceString = String.valueOf(priceInt / 100);
+            String priceString = String.valueOf(priceInt);
             qtyInt = cursor.getInt(cursor.getColumnIndex(BookEntry.QTY));
             String supplierString = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_NAME));
             String supplierTelString = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_TEL));
@@ -174,7 +178,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     // Save the updated/new information to the database
     private void saveBook() {
         String priceString = priceEditText.getText().toString().trim();
-        int priceInt = Integer.parseInt(priceString) * 100;
+        int priceInt = Integer.parseInt(priceString);
 
         ContentValues values = new ContentValues();
         values.put(BookEntry.PRODUCT_TITLE, String.valueOf(titleEditText.getText()).trim());
