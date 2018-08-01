@@ -1,6 +1,7 @@
 package com.example.android.bookstore;
 
 import android.app.LoaderManager;
+import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -156,7 +157,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_save:
-                // ***************TO DO***********************
+                saveBook();
                 finish();
                 return true;
             case R.id.menu_delete:
@@ -168,6 +169,45 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Save the updated/new information to the database
+    private void saveBook() {
+        String priceString = priceEditText.getText().toString().trim();
+        int priceInt = Integer.parseInt(priceString) * 100;
+
+        ContentValues values = new ContentValues();
+        values.put(BookEntry.PRODUCT_TITLE, String.valueOf(titleEditText.getText()).trim());
+        values.put(BookEntry.PRODUCT_AUTHOR, String.valueOf(authorEditText.getText()).trim());
+        values.put(BookEntry.PRICE, priceInt);
+        values.put(BookEntry.QTY, qtyInt);
+        values.put(BookEntry.SUPPLIER_NAME, String.valueOf(supplierEditText.getText()).trim());
+        values.put(BookEntry.SUPPLIER_TEL, String.valueOf(supplierTelEditText.getText()).trim());
+
+        int updateInt;
+        Uri insertUri;
+        String toastMessage = null;
+
+        // Add a new book to the database or update an existing book
+        if (selectedUri == null) {
+            insertUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+            if (insertUri == null) {
+                toastMessage = getString(R.string.toast_save_error);
+            } else {
+                toastMessage = getString(R.string.toast_insert_success);
+            }
+        } else {
+            updateInt = getContentResolver().update(selectedUri, values, null, null);
+            if (updateInt == 0) {
+                toastMessage = getString(R.string.toast_save_error);
+            } else {
+                toastMessage = getString(R.string.toast_update_success);
+            }
+        }
+
+        Toast toast = Toast.makeText(getBaseContext(), toastMessage, Toast.LENGTH_LONG);
+        toast.show();
+
     }
 
     // Hide the 'Delete' option from the menu if this is a new pet

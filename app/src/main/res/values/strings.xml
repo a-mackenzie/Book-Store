@@ -22,4 +22,7 @@
     <string name="editor_title_add">Add a new book</string>
 
     <string name="toast_zero_qty">Minimum Qty is 0</string>
+    <string name="toast_save_error">Error saving book</string>
+    <string name="toast_insert_success">Book added successfully</string>
+    <string name="toast_update_success">Book updated successfully</string>
 </resources>
