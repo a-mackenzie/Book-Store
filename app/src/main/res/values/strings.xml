@@ -20,4 +20,6 @@
 
     <string name="editor_title_edit">Edit book</string>
     <string name="editor_title_add">Add a new book</string>
+
+    <string name="toast_zero_qty">Minimum Qty is 0</string>
 </resources>

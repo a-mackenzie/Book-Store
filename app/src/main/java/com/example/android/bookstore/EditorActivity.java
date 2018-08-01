@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.bookstore.data.BookContract.BookEntry;
 import com.example.android.bookstore.data.BookDbHelper;
@@ -30,6 +32,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private EditText supplierEditText;
     private EditText supplierTelEditText;
     private TextView qtyDisplayView;
+
+    // Create a variable for the quantity
+    int qtyInt;
 
     // Create a new BookDbHelper
     private BookDbHelper mDbHelper;
@@ -71,6 +76,29 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         supplierEditText = findViewById(R.id.supplier_edit_text);
         supplierTelEditText = findViewById(R.id.supplier_tel_edit_text);
 
+        // Set up an onClickListener for the Qty Minus button
+        qtyMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (qtyInt > 0) {
+                    qtyInt -= 1;
+                    qtyDisplayView.setText(String.valueOf(qtyInt));
+                } else {
+                    Toast zeroQtyToast = Toast.makeText(getBaseContext(), getString(R.string.toast_zero_qty), Toast.LENGTH_SHORT);
+                    zeroQtyToast.show();
+                }
+            }
+        });
+
+        // Set up an onClickListener for the Qty Plus button
+        qtyPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                qtyInt += 1;
+                qtyDisplayView.setText(String.valueOf(qtyInt));
+            }
+        });
+
     }
 
     @Override
@@ -94,7 +122,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             String authorString = cursor.getString(cursor.getColumnIndex(BookEntry.PRODUCT_AUTHOR));
             int priceInt = cursor.getInt(cursor.getColumnIndex(BookEntry.PRICE));
             String priceString = String.valueOf(priceInt / 100);
-            int qtyInt = cursor.getInt(cursor.getColumnIndex(BookEntry.QTY));
+            qtyInt = cursor.getInt(cursor.getColumnIndex(BookEntry.QTY));
             String supplierString = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_NAME));
             String supplierTelString = cursor.getString(cursor.getColumnIndex(BookEntry.SUPPLIER_TEL));
 
