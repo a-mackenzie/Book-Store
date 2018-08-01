@@ -50,7 +50,13 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             selectedUri = getIntent().getData();
         }
 
-        getLoaderManager().initLoader(BOOK_LOADER, null, this);
+        if (selectedUri == null) {
+            this.setTitle(R.string.editor_title_add);
+            invalidateOptionsMenu();
+        } else {
+            this.setTitle(R.string.editor_title_edit);
+            getLoaderManager().initLoader(BOOK_LOADER, null, this);
+        }
 
         // Initialise the book db helper
         mDbHelper = new BookDbHelper(this);
@@ -134,5 +140,16 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Hide the 'Delete' option from the menu if this is a new pet
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        if (selectedUri == null) {
+            MenuItem menuItem = menu.findItem(R.id.menu_delete);
+            menuItem.setVisible(false);
+        }
+        return true;
     }
 }

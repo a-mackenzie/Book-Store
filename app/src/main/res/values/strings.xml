@@ -18,4 +18,6 @@
     <string name="minus">-</string>
     <string name="plus">+</string>
 
+    <string name="editor_title_edit">Edit book</string>
+    <string name="editor_title_add">Add a new book</string>
 </resources>
