@@ -1,16 +1,20 @@
 package com.example.android.bookstore;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -42,6 +46,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private EditText supplierEditText;
     private EditText supplierTelEditText;
     private TextView qtyDisplayView;
+    private Button callSupplierButton;
 
     // Create a variable for the quantity
     int qtyInt = 0;
@@ -97,6 +102,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         qtyDisplayView = findViewById(R.id.qty_display);
         supplierEditText = findViewById(R.id.supplier_edit_text);
         supplierTelEditText = findViewById(R.id.supplier_tel_edit_text);
+        callSupplierButton = findViewById(R.id.call_supplier_button);
 
         // Set the touchlistener on all user input views
         titleEditText.setOnTouchListener(mTouchListener);
@@ -127,6 +133,18 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             public void onClick(View view) {
                 qtyInt += 1;
                 qtyDisplayView.setText(String.valueOf(qtyInt));
+            }
+        });
+
+        // Set up an onClickListener for the Call Supplier button
+        callSupplierButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String supplierTelString = supplierTelEditText.getText().toString().trim();
+                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + supplierTelString));
+                if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    startActivity(callIntent);
+                }
             }
         });
 
