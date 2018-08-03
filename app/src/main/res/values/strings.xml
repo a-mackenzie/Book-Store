@@ -2,6 +2,7 @@
     <string name="app_name">Book Store</string>
 
     <string name="insert_dummy_book">Insert Dummy Book</string>
+    <string name="delete_all">Delete All</string>
     <string name="menu_save">Save</string>
     <string name="menu_delete">Delete Book</string>
 
@@ -26,9 +27,12 @@
     <string name="toast_delete_error">Book was not deleted</string>
     <string name="toast_delete_success">Book deleted successfully</string>
     <string name="toast_complete_all_fields">Please complete all fields</string>
+    <string name="toast_delete_all_error">Error deleting all</string>
+    <string name="toast_delete_all_success">All books deleted!</string>
 
     <string name="dialog_delete_confirm">Are you sure you want to delete this book?</string>
     <string name="dialog_unsaved_changes_confirm">Return without saving changes?</string>
+    <string name="dialog_delete_all_confirm">Do you really want to delete all books?</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_cancel">Cancel</string>
 

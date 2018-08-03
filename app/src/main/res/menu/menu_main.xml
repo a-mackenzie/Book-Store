@@ -11,4 +11,9 @@
         android:title="@string/insert_dummy_book"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/delete_all"
+        android:title="@string/delete_all"
+        app:showAsAction="never" />
+
 </menu>
