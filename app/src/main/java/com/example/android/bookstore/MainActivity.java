@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // Create a new CursorAdapter
     BookCursorAdapter mCursorAdapter;
 
+    // Create the empty view for the listview
+    TextView emptyView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +47,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mCursorAdapter = new BookCursorAdapter(this, null);
 
-        final ListView bookListView = (ListView) findViewById(R.id.list_view);
+        ListView bookListView = findViewById(R.id.list_view);
+        emptyView = findViewById(R.id.empty_view);
 
         // Set the cursor adapter on the list view
         bookListView.setAdapter(mCursorAdapter);
+
+        // Set the empty view for the list view
+        bookListView.setEmptyView(emptyView);
 
         // Set an onClickListener for the list view to open editor activity
         bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
