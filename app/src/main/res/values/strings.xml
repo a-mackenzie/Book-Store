@@ -23,4 +23,16 @@
     <string name="toast_save_error">Error saving book</string>
     <string name="toast_insert_success">Book added successfully</string>
     <string name="toast_update_success">Book updated successfully</string>
+    <string name="toast_delete_error">Book was not deleted</string>
+    <string name="toast_delete_success">Book deleted successfully</string>
+
+    <string name="dialog_delete_confirm">Are you sure you want to delete this book?</string>
+    <string name="dialog_unsaved_changes_confirm">Return without saving changes?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="dummy_book_title">Book Title</string>
+    <string name="dummy_book_author">J Bloggs</string>
+    <string name="dummy_book_supplier">Books R Us</string>
+    <string name="dummy_book_suppler_tel">01234567890</string>
 </resources>

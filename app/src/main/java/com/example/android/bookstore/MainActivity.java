@@ -74,12 +74,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Create the content values for the new book
         ContentValues values = new ContentValues();
-        values.put(BookEntry.PRODUCT_TITLE, "A Universe From Nothing");
-        values.put(BookEntry.PRODUCT_AUTHOR, "Lawrence Krauss");
-        values.put(BookEntry.PRICE, 1099);
+        values.put(BookEntry.PRODUCT_TITLE, getString(R.string.dummy_book_title));
+        values.put(BookEntry.PRODUCT_AUTHOR, getString(R.string.dummy_book_author));
+        values.put(BookEntry.PRICE, 10);
         values.put(BookEntry.QTY, 1);
-        values.put(BookEntry.SUPPLIER_NAME, "Books R Us");
-        values.put(BookEntry.SUPPLIER_TEL, "01234567890");
+        values.put(BookEntry.SUPPLIER_NAME, getString(R.string.dummy_book_supplier));
+        values.put(BookEntry.SUPPLIER_TEL, getString(R.string.dummy_book_suppler_tel));
 
         // Add the new book to the database
         getContentResolver().insert(BookEntry.CONTENT_URI, values);

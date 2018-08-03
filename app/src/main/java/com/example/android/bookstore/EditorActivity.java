@@ -1,19 +1,23 @@
 package com.example.android.bookstore;
 
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.NumberKeyListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +54,18 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     // Create a new Uri object for the selected book
     Uri selectedUri;
 
+    // Create a boolean variable to track if the book information has changed
+    private boolean bookEdited = false;
+
+    // Create a touch listener to listen for any user input views being touched
+    private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            bookEdited = true;
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +96,15 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         qtyDisplayView = findViewById(R.id.qty_display);
         supplierEditText = findViewById(R.id.supplier_edit_text);
         supplierTelEditText = findViewById(R.id.supplier_tel_edit_text);
+
+        // Set the touchlistener on all user input views
+        titleEditText.setOnTouchListener(mTouchListener);
+        authorEditText.setOnTouchListener(mTouchListener);
+        priceEditText.setOnTouchListener(mTouchListener);
+        qtyMinusButton.setOnTouchListener(mTouchListener);
+        qtyPlusButton.setOnTouchListener(mTouchListener);
+        supplierEditText.setOnTouchListener(mTouchListener);
+        supplierTelEditText.setOnTouchListener(mTouchListener);
 
         // Set up an onClickListener for the Qty Minus button
         qtyMinusButton.setOnClickListener(new View.OnClickListener() {
@@ -165,12 +190,17 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 finish();
                 return true;
             case R.id.menu_delete:
-                // ***************TO DO***********************
+                showDeleteConfirmationDialog();
                 return true;
             case android.R.id.home:
-                // ***************TO DO***********************
-                finish();
-                return true;
+                // Check if there are unsaved changes and launch dialog if so
+                if (!bookEdited) {
+                    NavUtils.navigateUpFromSameTask(EditorActivity.this);
+                    return true;
+                } else {
+                    showUnsavedChangesDialog();
+                    return true;
+                }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -223,5 +253,62 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             menuItem.setVisible(false);
         }
         return true;
+    }
+
+    // Show the Delete confirmation dialog
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.dialog_delete_confirm);
+        builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                deleteBook();
+            }
+        });
+        builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    // Delete the book from the database
+    private void deleteBook() {
+        String toastMessage;
+        int deleteInt = getContentResolver().delete(selectedUri, null, null);
+        if (deleteInt == 0) {
+            toastMessage = getString(R.string.toast_delete_error);
+        } else {
+            toastMessage = getString(R.string.toast_delete_success);
+            finish();
+        }
+
+        Toast toast = Toast.makeText(getBaseContext(), toastMessage, Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    private void showUnsavedChangesDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.dialog_unsaved_changes_confirm);
+        builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                NavUtils.navigateUpFromSameTask(EditorActivity.this);
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
