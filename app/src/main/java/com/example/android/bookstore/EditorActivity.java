@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.NumberKeyListener;
 import android.view.Menu;
@@ -43,7 +44,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private TextView qtyDisplayView;
 
     // Create a variable for the quantity
-    int qtyInt;
+    int qtyInt = 0;
 
     // Create a new BookDbHelper
     private BookDbHelper mDbHelper;
@@ -186,8 +187,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_save:
-                saveBook();
-                finish();
+                // Check that all user input fields have been completed before saving
+                if (allFieldsCompleted()) {
+                    saveBook();
+                    finish();
+                } else {
+                    Toast toast = Toast.makeText(getBaseContext(), getString(R.string.toast_complete_all_fields), Toast.LENGTH_LONG);
+                    toast.show();
+                }
                 return true;
             case R.id.menu_delete:
                 showDeleteConfirmationDialog();
@@ -310,5 +317,24 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    // Check that all input fields have been completed
+    private boolean allFieldsCompleted() {
+        String titleString = titleEditText.getText().toString().trim();
+        String authorString = authorEditText.getText().toString().trim();
+        String priceString = priceEditText.getText().toString().trim();
+        String supplierString = supplierEditText.getText().toString().trim();
+        String supplierTelString = supplierTelEditText.getText().toString().trim();
+
+        if (TextUtils.isEmpty(titleString)
+            || TextUtils.isEmpty(authorString)
+            || TextUtils.isEmpty(priceString)
+            || TextUtils.isEmpty(supplierString)
+            || TextUtils.isEmpty(supplierTelString)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -25,6 +25,7 @@
     <string name="toast_update_success">Book updated successfully</string>
     <string name="toast_delete_error">Book was not deleted</string>
     <string name="toast_delete_success">Book deleted successfully</string>
+    <string name="toast_complete_all_fields">Please complete all fields</string>
 
     <string name="dialog_delete_confirm">Are you sure you want to delete this book?</string>
     <string name="dialog_unsaved_changes_confirm">Return without saving changes?</string>
