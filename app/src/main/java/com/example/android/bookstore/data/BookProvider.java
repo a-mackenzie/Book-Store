@@ -11,8 +11,6 @@ import android.util.Log;
 
 import com.example.android.bookstore.data.BookContract.BookEntry;
 
-import java.net.URI;
-
 public class BookProvider extends ContentProvider {
 
     // Create and instance of the BookDbHelper
@@ -206,39 +204,51 @@ public class BookProvider extends ContentProvider {
     private int updateBook(Uri uri, ContentValues values, String selection, String[] selectionArguments) {
 
         // Check that the title is not null
-        String title = values.getAsString(BookEntry.PRODUCT_TITLE);
-        if (title == null) {
-            throw new IllegalArgumentException("Book title required");
+        if (values.containsKey(BookEntry.PRODUCT_TITLE)) {
+            String title = values.getAsString(BookEntry.PRODUCT_TITLE);
+            if (title == null) {
+                throw new IllegalArgumentException("Book title required");
+            }
         }
 
         // Check that the author is not null
-        String author = values.getAsString(BookEntry.PRODUCT_AUTHOR);
-        if (author == null) {
-            throw new IllegalArgumentException("Author name required");
+        if (values.containsKey(BookEntry.PRODUCT_AUTHOR)) {
+            String author = values.getAsString(BookEntry.PRODUCT_AUTHOR);
+            if (author == null) {
+                throw new IllegalArgumentException("Author name required");
+            }
         }
 
         // If the quantity is provided, check that it's greater than or equal to 0
-        Integer price = values.getAsInteger(BookEntry.PRICE);
-        if (price != null && price < 0) {
-            throw new IllegalArgumentException("Price required");
+        if (values.containsKey(BookEntry.PRICE)) {
+            Integer price = values.getAsInteger(BookEntry.PRICE);
+            if (price != null && price < 0) {
+                throw new IllegalArgumentException("Price required");
+            }
         }
 
         // If the quantity is provided, check that it's greater than or equal to 0
-        Integer qty = values.getAsInteger(BookEntry.QTY);
-        if (qty != null && qty < 0) {
-            throw new IllegalArgumentException("Quantity required");
+        if (values.containsKey(BookEntry.QTY)) {
+            Integer qty = values.getAsInteger(BookEntry.QTY);
+            if (qty != null && qty < 0) {
+                throw new IllegalArgumentException("Quantity required");
+            }
         }
 
         // Check that the name of the supplier is not null
-        String supplier = values.getAsString(BookEntry.SUPPLIER_NAME);
-        if (supplier == null) {
-            throw new IllegalArgumentException("Supplier name required");
+        if (values.containsKey(BookEntry.SUPPLIER_NAME)) {
+            String supplier = values.getAsString(BookEntry.SUPPLIER_NAME);
+            if (supplier == null) {
+                throw new IllegalArgumentException("Supplier name required");
+            }
         }
 
         // Check that the telephone number of the supplier is not null
-        String supplierTel = values.getAsString(BookEntry.SUPPLIER_TEL);
-        if (supplierTel == null) {
-            throw new IllegalArgumentException("Supplier phone number required");
+        if (values.containsKey(BookEntry.SUPPLIER_TEL)) {
+            String supplierTel = values.getAsString(BookEntry.SUPPLIER_TEL);
+            if (supplierTel == null) {
+                throw new IllegalArgumentException("Supplier phone number required");
+            }
         }
 
         // If no content values have been provided then return

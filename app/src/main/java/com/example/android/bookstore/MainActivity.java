@@ -17,8 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 startActivity(addIntent);
             }
         });
-
 
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
     }
@@ -156,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+
     }
 
     private void deleteAll() {
@@ -170,4 +168,5 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Toast toast = Toast.makeText(getBaseContext(), toastMessage, Toast.LENGTH_LONG);
         toast.show();
     }
+
 }
