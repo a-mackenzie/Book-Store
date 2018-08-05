@@ -33,6 +33,7 @@
     <string name="toast_delete_all_success">All books deleted!</string>
     <string name="toast_book_sale_error">Error selling book</string>
     <string name="toast_book_sale_success">Book Sold! :)</string>
+    <string name="toast_out_of_stock">Book is out of stock</string>
 
     <string name="dialog_delete_confirm">Are you sure you want to delete this book?</string>
     <string name="dialog_unsaved_changes_confirm">Return without saving changes?</string>

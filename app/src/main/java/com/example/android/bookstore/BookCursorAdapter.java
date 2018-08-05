@@ -88,8 +88,12 @@ public class BookCursorAdapter extends CursorAdapter {
             } else {
                 toastMessage = context.getResources().getString(R.string.toast_book_sale_success);
             }
-            Toast saleToast = Toast.makeText(context, toastMessage, Toast.LENGTH_LONG);
+            Toast saleToast = Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT);
             saleToast.show();
+        } else {
+            String toastMessage = context.getResources().getString(R.string.toast_out_of_stock);
+            Toast outOfStockToast = Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT);
+            outOfStockToast.show();
         }
     }
 }
