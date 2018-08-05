@@ -7,5 +7,23 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    <style name="titleFont">
+        <item name="android:fontFamily">@font/viga</item>
+        <item name="android:textSize">@dimen/titleFontSize</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="authorFont">
+        <item name="android:fontFamily">@font/viga</item>
+        <item name="android:textSize">@dimen/authorFontSize</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="priceQtyFont">
+        <item name="android:fontFamily">@font/viga</item>
+        <item name="android:textSize">@dimen/priceQtyFontSize</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 
 </resources>

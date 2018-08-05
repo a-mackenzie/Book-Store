@@ -5,11 +5,12 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="@dimen/listItemPadding"
     android:descendantFocusability="blocksDescendants" >
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="0.4"
         android:orientation="vertical">
 
@@ -18,14 +19,18 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            tools:text="The Road"/>
+            android:gravity="center_vertical"
+            tools:text="The Road"
+            android:textAppearance="@style/titleFont"/>
 
         <TextView
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            tools:text="Cormac McCarthy"/>
+            android:gravity="center_vertical"
+            tools:text="Cormac McCarthy"
+            android:textAppearance="@style/authorFont"/>
 
     </LinearLayout>
 
@@ -33,19 +38,23 @@
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="0.15"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/price_label"/>
+            android:text="@string/price_label"
+            android:textAppearance="@style/priceQtyFont"/>
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            tools:text="£9.99"/>
+            android:gravity="center_vertical"
+            tools:text="£9.99"
+            android:textAppearance="@style/priceQtyFont"/>
 
     </LinearLayout>
 
@@ -53,19 +62,23 @@
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="0.15"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/qty_label"/>
+            android:text="@string/qty_label"
+            android:textAppearance="@style/priceQtyFont"/>
 
         <TextView
             android:id="@+id/qty"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            tools:text="2"/>
+            android:gravity="center_vertical"
+            tools:text="2"
+            android:textAppearance="@style/priceQtyFont"/>
 
     </LinearLayout>
 
@@ -73,8 +86,10 @@
         android:id="@+id/sale_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:src="@drawable/fab_icon"/>
+        android:background="@drawable/sale_icon"
+        />
 
 </LinearLayout>

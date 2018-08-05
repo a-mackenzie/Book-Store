@@ -30,6 +30,9 @@
             android:name=".data.BookProvider"
             android:authorities="com.example.android.bookstore"
             android:exported="false" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
