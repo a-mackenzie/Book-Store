@@ -5,5 +5,9 @@
     <dimen name="titleFontSize">20sp</dimen>
     <dimen name="authorFontSize">16sp</dimen>
     <dimen name="priceQtyFontSize">14sp</dimen>
+    <dimen name="editorLabelFontSize">20sp</dimen>
+    <dimen name="editorInputFontSize">16sp</dimen>
     <dimen name="listItemPadding">12dp</dimen>
+    <dimen name="editorViewsPaddingV">4dp</dimen>
+    <dimen name="qtyButtonsPaddingH">16dp</dimen>
 </resources>

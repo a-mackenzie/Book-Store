@@ -26,4 +26,16 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <style name="editorLabelFont">
+        <item name="android:fontFamily">@font/viga</item>
+        <item name="android:textSize">@dimen/editorLabelFontSize</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="editorInputFont">
+        <item name="android:fontFamily">@font/viga</item>
+        <item name="android:textSize">@dimen/editorInputFontSize</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
 </resources>

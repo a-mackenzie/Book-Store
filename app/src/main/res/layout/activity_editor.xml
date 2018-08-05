@@ -1,136 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/mainActPadding">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/editorViewsPaddingV"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_label"/>
+            android:text="@string/title_label"
+            android:textAppearance="@style/editorLabelFont"/>
 
         <EditText
             android:id="@+id/title_edit_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/title_label"/>
+            android:hint="@string/title_label"
+            android:textAppearance="@style/editorInputFont"
+            android:textColor="@color/colorPrimary"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/editorViewsPaddingV"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/author_label"/>
+            android:text="@string/author_label"
+            android:textAppearance="@style/editorLabelFont"/>
 
         <EditText
             android:id="@+id/author_edit_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/author_label"/>
+            android:hint="@string/author_label"
+            android:textAppearance="@style/editorInputFont"
+            android:textColor="@color/colorPrimary"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/editorViewsPaddingV"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/price_label_symbol"/>
+            android:text="@string/price_label_symbol"
+            android:textAppearance="@style/editorLabelFont"/>
 
         <EditText
             android:id="@+id/price_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="@string/price_label"/>
+            android:hint="@string/price_label"
+            android:textAppearance="@style/editorInputFont"
+            android:textColor="@color/colorPrimary"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/editorViewsPaddingV"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/qty_label"/>
+            android:paddingEnd="@dimen/qtyButtonsPaddingH"
+            android:text="@string/qty_label"
+            android:textAppearance="@style/editorLabelFont"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/qty_minus_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minus"/>
+            android:background="@drawable/minus_icon"/>
 
         <TextView
             android:id="@+id/qty_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"/>
+            android:paddingStart="@dimen/qtyButtonsPaddingH"
+            android:paddingEnd="@dimen/qtyButtonsPaddingH"
+            android:text="0"
+            android:textAppearance="@style/editorInputFont"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/qty_plus_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plus"/>
+            android:background="@drawable/plus_icon"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/editorViewsPaddingV"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/supplier_label"/>
+            android:text="@string/supplier_label"
+            android:textAppearance="@style/editorLabelFont"/>
 
         <EditText
             android:id="@+id/supplier_edit_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/supplier_label"/>
+            android:hint="@string/supplier_label"
+            android:textAppearance="@style/editorInputFont"
+            android:textColor="@color/colorPrimary"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/supplier_tel_label"/>
+            android:text="@string/supplier_tel_label"
+            android:textAppearance="@style/editorLabelFont"/>
 
         <EditText
             android:id="@+id/supplier_tel_edit_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:inputType="number"
-            android:hint="@string/supplier_tel_label"/>
+            android:hint="@string/supplier_tel_label"
+            android:textAppearance="@style/editorInputFont"
+            android:textColor="@color/colorPrimary"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/call_supplier_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Call"/>
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/call_icon"/>
 
     </LinearLayout>
 

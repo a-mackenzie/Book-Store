@@ -26,6 +26,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,12 +42,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private EditText titleEditText;
     private EditText authorEditText;
     private EditText priceEditText;
-    private Button qtyMinusButton;
-    private Button qtyPlusButton;
+    private ImageButton qtyMinusButton;
+    private ImageButton qtyPlusButton;
     private EditText supplierEditText;
     private EditText supplierTelEditText;
     private TextView qtyDisplayView;
-    private Button callSupplierButton;
+    private ImageButton callSupplierButton;
 
     // Create a variable for the quantity
     int qtyInt = 0;
