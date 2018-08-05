@@ -6,7 +6,8 @@
     <string name="menu_save">Save</string>
     <string name="menu_delete">Delete Book</string>
 
-    <string name="empty_view_text">There are no books to display!\nTap + to start adding</string>
+    <string name="empty_view_text_1">There are no books to display!</string>
+    <string name="empty_view_text_2">Tap + to start adding</string>
 
     <string name="price_label_symbol">Price £:</string>
     <string name="price_label">Price</string>

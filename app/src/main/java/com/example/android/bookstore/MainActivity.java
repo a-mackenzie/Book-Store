@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     BookCursorAdapter mCursorAdapter;
 
     // Create the empty view for the listview
-    TextView emptyView;
+    LinearLayout emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

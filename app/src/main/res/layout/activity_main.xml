@@ -21,12 +21,26 @@
         android:src="@drawable/fab_icon"
         android:layout_margin="@dimen/fabMargin" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="@string/empty_view_text" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_view_text_1"
+            android:textAppearance="@style/titleFont"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_view_text_2"
+            android:textAppearance="@style/authorFont"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
