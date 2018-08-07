@@ -1,6 +1,7 @@
 package com.example.android.bookstore;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -13,6 +14,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +40,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     private final static int BOOK_LOADER = 0;
 
+    private final static int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
+
     // Create all of the user input views
     private EditText titleEditText;
     private EditText authorEditText;
@@ -54,9 +58,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     // Create a new BookDbHelper
     private BookDbHelper mDbHelper;
-
-    // Create a new cursor adapter
-    BookCursorAdapter mCursorAdapter;
 
     // Create a new Uri object for the selected book
     Uri selectedUri;
@@ -143,12 +144,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             public void onClick(View view) {
                 String supplierTelString = supplierTelEditText.getText().toString().trim();
                 Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + supplierTelString));
-                if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+
+                if (ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(EditorActivity.this, new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                } else {
                     startActivity(callIntent);
                 }
-            }
+                };
         });
-
     }
 
     @Override
